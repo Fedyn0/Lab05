@@ -26,7 +26,7 @@ class View(ft.UserControl):
 
         #ROW with some controls
         # text field for the name
-        self.ddCDS = ft.Dropdown(
+        self._ddCDS = ft.Dropdown(
             label="Corso di Studi",
             width=700,
             hint_text="Selezionare un corso di studi"
@@ -34,12 +34,35 @@ class View(ft.UserControl):
 
         self._controller.fill_ddCDS()
 
+        self.btn_cerca_iscritti = ft.ElevatedButton(
+            text="Cerca Iscritti",
+            on_click=self._controller.handle_btn_cerca_iscritti)
 
-        # button for the "hello" reply
-        self.btn_cerca_iscritti = ft.ElevatedButton(text="Cerca Iscritti", on_click=self._controller.handle_btn_cerca_iscritti)
-        row1 = ft.Row([self.ddCDS, self.btn_cerca_iscritti],
+        row1 = ft.Row([self._ddCDS, self.btn_cerca_iscritti],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
+
+
+        self._matricola = ft.TextField(
+            label="Matricola",
+            hint_text="Inserisci una Matricola",)
+
+        self._nome = ft.TextField(label= "Nome",
+                            read_only=True,)
+        self._cognome = ft.TextField(label= "Cognome",
+                            read_only=True,)
+        row2 = ft.Row([self._matricola, self._nome, self._cognome],
+                      alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row2)
+
+
+        self._btnCercaStudente = ft.ElevatedButton(text="Cerca Studente",)
+        self._btnCercaCorsi = ft.ElevatedButton(text="Cerca Corsi",)
+        self._btnIscriviti = ft.ElevatedButton(text="Iscriviti",)
+
+        row3 = ft.Row([self._btnCercaStudente, self._btnCercaCorsi, self._btnIscriviti],
+                      alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row3)
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
