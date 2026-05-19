@@ -43,22 +43,25 @@ class View(ft.UserControl):
         self._page.controls.append(row1)
 
 
-        self._matricola = ft.TextField(
+        self._txtMatricola = ft.TextField(
             label="Matricola",
             hint_text="Inserisci una Matricola",)
 
-        self._nome = ft.TextField(label= "Nome",
+        self._txtNome = ft.TextField(label= "Nome",
                             read_only=True,)
-        self._cognome = ft.TextField(label= "Cognome",
+        self._txtCognome = ft.TextField(label= "Cognome",
                             read_only=True,)
-        row2 = ft.Row([self._matricola, self._nome, self._cognome],
+        row2 = ft.Row([self._txtMatricola, self._txtNome, self._txtCognome],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row2)
 
 
-        self._btnCercaStudente = ft.ElevatedButton(text="Cerca Studente",)
-        self._btnCercaCorsi = ft.ElevatedButton(text="Cerca Corsi",)
-        self._btnIscriviti = ft.ElevatedButton(text="Iscriviti",)
+        self._btnCercaStudente = ft.ElevatedButton(text = "Cerca Studente",
+                                                   on_click= self._controller.handle_btn_cerca_studente)
+        self._btnCercaCorsi = ft.ElevatedButton(text="Cerca Corsi",
+                                                on_click = self._controller.handle_btn_cerca_corsi)
+        self._btnIscriviti = ft.ElevatedButton(text="Iscriviti",
+                                               on_click= self._controller.handle_btn_iscriviti)
 
         row3 = ft.Row([self._btnCercaStudente, self._btnCercaCorsi, self._btnIscriviti],
                       alignment=ft.MainAxisAlignment.CENTER)

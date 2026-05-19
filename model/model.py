@@ -12,3 +12,20 @@ class Model:
 
     def getAllCorsi(self):
         return DAO.getAllCorsi(self)
+
+    def getStudenteFromMatricola(self, matricola):
+        return DAO.getStudenteFromMatricola(matricola)
+
+    def getCorsiFromMatricola(self, matricola):
+        return DAO.getCorsiFromMatricola(matricola)
+
+    def getNuovaIscrizione(self, matricola, codins):
+        x = DAO.isStudenteInCorso(matricola, codins)
+        if x:
+            return 2
+
+        isIscritto = DAO.nuovaIscrizione(matricola, codins)
+        if isIscritto:
+            return 0
+        else:
+            return 1
